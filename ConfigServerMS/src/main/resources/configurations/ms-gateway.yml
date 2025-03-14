@@ -1,0 +1,21 @@
+server:
+  port: 8081
+  
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+   gateway:
+     routes:
+       - id: ms-estudiante
+         uri: lb://ms-estudiante
+         predicates:
+           - Path= /estudiante/**
+       - id: ms-curso
+         uri: lb://ms-curso
+         predicates:
+           - Path= /curso/**
+eureka:
+   client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
